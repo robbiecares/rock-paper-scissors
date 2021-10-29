@@ -82,7 +82,11 @@ function game() {
             alert('game ended')
         }
     
+    }
 
+    if (roundsPlayed) {
+        if (userWins != pcWins) {alert(`you won ${userWins} out of ${roundsPlayed} games.`)
+        } else {alert(`you and the computer both won ${userWins} games`)}
     }
 }
 
