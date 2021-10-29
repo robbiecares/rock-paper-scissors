@@ -84,9 +84,12 @@ function game() {
     
     }
 
+    // summarize results of the game
     if (roundsPlayed) {
-        if (userWins != pcWins) {alert(`you won ${userWins} out of ${roundsPlayed} games.`)
-        } else {alert(`you and the computer both won ${userWins} games`)}
+        let summary = `User Wins: ${userWins}\nPC Wins: ${pcWins}\nTies: ${roundsPlayed - userWins - pcWins}`
+        let status = (userWins === pcWins) ? "It's a tie!" : (userWins > pcWins) ? "You won!" : "You lost!"
+        
+        alert(`${status}\n\n${summary}`)        
     }
 }
 
