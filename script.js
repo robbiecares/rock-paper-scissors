@@ -15,7 +15,7 @@ function userPlay() {
         //capture user's selection
         response = prompt("Choose 'rock', 'paper' or 'scissors'")
 
-        // verify users's selection is a valid choice & if so break the loop (clicking 'cancel' gives a 'null' response)
+        // verify users's selection is valid & if so break the loop (clicking 'cancel' gives a 'null' response)
         if (response === null || choices.includes(response.toLowerCase())) {
             invalid = false
         // if choice is invalid, remind user of the valid options
@@ -29,7 +29,7 @@ function userPlay() {
 function playRound(playerSelection, computerSelection) {    
     
     //variable to hold the results of the game
-    let result = undefined
+    let result;
     
     // logic for winning/losing/tie-ing
 
@@ -81,14 +81,12 @@ function game() {
             keepPlaying = false
             alert('game ended')
         }
-    
     }
 
     // summarize results of the game
     if (roundsPlayed) {
         let summary = `User Wins: ${userWins}\nPC Wins: ${pcWins}\nTies: ${roundsPlayed - userWins - pcWins}`
-        let status = (userWins === pcWins) ? "It's a tie!" : (userWins > pcWins) ? "You won!" : "You lost!"
-        
+        let status = (userWins === pcWins) ? "It's a tie!" : (userWins > pcWins) ? "You won!" : "You lost!"      
         alert(`${status}\n\n${summary}`)        
     }
 }
