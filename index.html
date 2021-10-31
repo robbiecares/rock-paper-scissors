@@ -9,12 +9,35 @@
 </head>
 <body>
     <!-- <header>Rock Paper Scissors</header> -->
-    <div class="container">
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+    
+    <!-- Gameplay row/section = 1/2 page-->
+    <div class="gamplay-section">
+        <div class="user-selection">
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
+        </div>
+        <div class="round-result">Choose your weapon</div>
     </div>
-    <div class="result">Choose your weapon</div>
+
+    <!-- Results row/section  = 1/2 page -->
+    <div class="results-section">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="score-board-container">
+            <div class="score-board-column">
+                <p class='player-name'>You</p>
+                <p id='player-score'></p>
+            </div>
+            <div class="score-board-column">
+                <p class='player-name'>PC</p>
+                <p id='pc-score'></p>
+            </div>
+        </div>
+        <div></div>
+    </div>
+    
     <footer><a class='link' href='https://github.com/robbiecares/rock-paper-scissors' target="_blank">source</a></footer>
     <script src="script.js"></script>
 </body>

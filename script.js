@@ -26,6 +26,7 @@ function userPlay() {
     return response
 }
 
+//pre-ui function
 function playRound(playerSelection, computerSelection) {    
     
     //variable to hold the results of the game
@@ -52,6 +53,7 @@ function playRound(playerSelection, computerSelection) {
     }
     return result
 }
+
 
 function playRoundWithButtons(e) {    
 
@@ -87,7 +89,7 @@ if (playerSelection === pcSelection) {
 }
 
 // pass msg to result div
-console.log(document.querySelector('.result').textContent = msg)
+console.log(document.querySelector('.round-result').textContent = msg)
 
 return result
 }
