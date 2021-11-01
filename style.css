@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-weight: bold;
 }
 
 html {
@@ -17,16 +18,13 @@ body {
     flex: 1;
 }
 
-body > * {
-    /* border: solid 3px green; */
-}
-
 header {
     text-align: center;
     font-size: 48px;
     background-color: darkblue;
     color: white;
-    font-weight: bold;
+    padding: 4px;
+
 }
 
 #content { 
@@ -38,13 +36,9 @@ header {
     
 }
 
-#content > * {
-    /* border: solid 1px red; */
-}
 footer {
     background-color: grey;
     text-align: center;
-    justify-self: flex-end;
     padding: 4px;
 }
 
@@ -52,90 +46,72 @@ footer {
     display: flex;
     flex-flow: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     flex: 1;
     gap: 10%;
-    /* border: red solid 1px; */
+    text-align: center;
 }
 
 .user-selection {
     display: flex;
     justify-content: center;
-    min-width: 100%;
     gap: 10%; 
 }
 
 .user-selection > button {
-    padding: 3%;
-    font-weight: bold;
-    /* width: 5%; */
-    /* text-align: center; */
+    padding: 4%;
+    height: auto;
+    text-align: center;
+    width: 200px;
 }
 
-.gamplay-section > * {
-    /* border: solid 1px green; */
-} 
-
 .results-section {
-    /* border: solid 1px green; */
     display: flex;
-    flex-flow: row;
-    justify-content: stretch;
-    align-items: stretch;
     flex: 1;
 }
 
 .results-section > * {
-    /* border: solid 1px green; */
-    width: 20%;
+    flex: 1;
 } 
 
-.score-board-container {
+.score-board-container, .ties-container {
     display: flex;
     flex-flow: row;
     justify-content: center;
     text-align: center;
-    /* border: solid 1px red; */
-    padding: 3%;
+    padding: 4%;
     padding-top: 0;
 }
 
 .score-board-column {
     display: flex;
     flex-flow: column;
+    align-items: stretch;
     text-align: center;
     font-size: 36px;
-    /* border: solid 1px green; */
+    flex: 1;
 }
 
-.score-board-container > * {
-    flex: 1;
-    
+.column-label {
+    border-bottom: solid black 2px;
+    align-self: stretch;
 }
 
 .score-board-container > .score-board-column:first-child {
     border-right: solid 2px black;
-    /* border: solid 1px green; */
 }
 
-.column-label {
-    font-size: 36px;
-    border-bottom: solid black 2px;
-}
-
-#player-score, #pc-score, #ties-value {
-    font-size: 20px;
-}
-
-.ties-container {
+.score-area {
+    text-align: start;
     display: flex;
-    /* flex-flow: column; */
+    flex-flow: column;
+    padding: 30px 50px;
 }
 
-.ties-container > * {
-    /* border: solid 1px red; */
-}
+.score-value {
+    font-size: 28px;
 
+}
 
 .link {
     text-decoration: none;

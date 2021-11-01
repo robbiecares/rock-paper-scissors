@@ -1,18 +1,65 @@
 // initialize global variables
 let userWins = 0
 let pcWins = 0
+let ties = 0
 let roundsPlayed = 0
 let msg = 'Choose your weapon'
+document.querySelector('.round-result').textContent = msg
 
 function resetGame() {
     userWins = 0
     pcWins = 0
+    ties = 0
     roundsPlayed = 0
-    msg = 'Choose your weapon'
+    
     document.querySelector('#player-score').textContent = undefined
     document.querySelector('#pc-score').textContent = undefined
     document.querySelector('#ties-value').textContent = undefined    
     document.querySelector('.round-result').textContent = msg
+}
+
+function update_score(round_result) {
+    // establish variables
+    let score;
+    let scoreId;
+
+    // determine round result, update score value & set the correct column for updating
+    switch (round_result) {
+        case 'user':
+            score = ++userWins
+            scoreId = '#player-score'
+            break;
+        case 'pc':
+            score = ++pcWins
+            scoreId = '#pc-score'
+            break;
+        case 'tie':
+            score = ++ties
+            scoreId = '#ties-value'
+            break;
+    }
+
+    // reset column that should be updated
+    const container = document.querySelector(scoreId)
+    container.innerHTML = '';
+
+
+    // create 'full rows' for the score column
+    for (i = Math.floor(score/5); i > 0; i--) {
+        let fullRow = document.createElement('p')
+        fullRow.setAttribute('style', 'text-decoration: line-through')
+        fullRow.textContent = '||||'
+        container.appendChild(fullRow); 
+    }   
+
+    // create any 'paratial rows' for the score column
+    let partialRow = document.createElement('p')
+    container.appendChild(partialRow)
+    let text = ''
+    for (i = Math.floor(score % 5); i > 0; i--) {
+        partialRow.textContent += '|'
+    }
+    
 }
 
 function pcPlay() {
@@ -50,7 +97,6 @@ function playRound(playerSelection, computerSelection) {
     let result;
     
     // logic for winning/losing/tie-ing
-
     // tie case
     if (playerSelection === computerSelection) {
         // console.log(`the computer also chose ${playerSelection}!`)
@@ -76,7 +122,7 @@ function playRoundWithButtons() {
 
 //variable to hold the results & user response of the game
 let result;
-let msg
+let msg;
 
 // confirm user's choice
 const playerSelection = this.textContent.toLowerCase()
@@ -107,21 +153,14 @@ if (playerSelection === pcSelection) {
 // pass msg to result div
 console.log(document.querySelector('.round-result').textContent = msg)
 
-// update score
+// update roundsPlayed
 ++roundsPlayed
 
-if (result === 'user') {
-    document.querySelector('#player-score').textContent = ++userWins
-}
-if (result === 'pc') {
-    document.querySelector('#pc-score').textContent = ++pcWins
-}
-if (result === 'tie') {
-    document.querySelector('#ties-value').textContent = roundsPlayed - userWins - pcWins
-}
+// update score
+update_score(result)
 
 // stop game once a player reaches five wins
-if (userWins == 5 || pcWins == 5) {
+if (userWins == 5 || pcWins == 5 ) {
     alert(`Game over, ${(userWins > pcWins) ? 'you': 'the PC'} won after ${roundsPlayed} rounds!\n\n`)
     resetGame()
 }
