@@ -1,3 +1,20 @@
+// initialize global variables
+let userWins = 0
+let pcWins = 0
+let roundsPlayed = 0
+let msg = 'Choose your weapon'
+
+function resetGame() {
+    userWins = 0
+    pcWins = 0
+    roundsPlayed = 0
+    msg = 'Choose your weapon'
+    document.querySelector('#player-score').textContent = undefined
+    document.querySelector('#pc-score').textContent = undefined
+    document.querySelector('#ties-value').textContent = undefined    
+    document.querySelector('.round-result').textContent = msg
+}
+
 function pcPlay() {
     // randomly choose a game object for the computer
     choices = ['rock', 'paper', 'scissors']
@@ -55,7 +72,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-function playRoundWithButtons(e) {    
+function playRoundWithButtons() {    
 
 //variable to hold the results & user response of the game
 let result;
@@ -73,65 +90,66 @@ const pcSelection = pcPlay()
 // tie case
 if (playerSelection === pcSelection) {
     result = 'tie'
-    msg = `The computer also chose ${playerSelection}, it's a ${result}!`
-
+    msg = `The computer also chose ${playerSelection}, it's a tie!`
 
 // winning cases
 } else if ( (playerSelection === 'rock' && pcSelection === 'scissors') ||
             (playerSelection === 'paper' && pcSelection === 'rock') ||
             (playerSelection === 'scissors' && pcSelection === 'paper')) {
-    result = 'win'
-    msg = `The computer chose ${pcSelection}, you ${result}!`
+    result = 'user'
+    msg = `The computer chose ${pcSelection}, you win!`
 
 } else {
-    result = 'lose'
-    msg = `The computer chose ${pcSelection}, you ${result}!`
+    result = 'pc'
+    msg = `The computer chose ${pcSelection}, you lose!`
 }
 
 // pass msg to result div
 console.log(document.querySelector('.round-result').textContent = msg)
 
-return result
+// update score
+++roundsPlayed
+
+if (result === 'user') {
+    document.querySelector('#player-score').textContent = ++userWins
+}
+if (result === 'pc') {
+    document.querySelector('#pc-score').textContent = ++pcWins
+}
+if (result === 'tie') {
+    document.querySelector('#ties-value').textContent = roundsPlayed - userWins - pcWins
 }
 
-// function game() {
-//     // play five rounds of rps
-//     let userWins = 0
-//     let pcWins = 0
-//     let roundsPlayed = 0
+// stop game once a player reaches five wins
+if (userWins == 5 || pcWins == 5) {
+    alert(`Game over, ${(userWins > pcWins) ? 'you': 'the PC'} won after ${roundsPlayed} rounds!\n\n`)
+    resetGame()
+}
 
+}
+
+// function game(e) {
+//     console.log(this)
+    
 //     // set condition for continuing the game
 //     keepPlaying = true
 //     while(keepPlaying) {
 
-//         // confirm user would like to continue playing
-//         userChoice = userPlay()
-//         if (userChoice) {
-//             // play round of game
-//             result = playRound(userChoice, computerPlay())
+//         // play round of game
+//         result = playRoundWithButtons(e)
         
-//             // update score
-//             if (result === 'user') {++userWins};
-//             if (result === 'pc') {++pcWins};
-//             ++roundsPlayed
-        
-//             // stop game after five rounds
-//             if (roundsPlayed >= 5)
-//                 keepPlaying = false
-//         } else {
-//             // stop game as user selected 'cancel'
+//         // update score
+//         if (result === 'user') {++userWins};
+//         if (result === 'pc') {++pcWins};
+//         ++roundsPlayed
+    
+//         // stop game once a player reaches five wins
+//         if (userWins === 5 || pcWins === 5)
 //             keepPlaying = false
-//             alert('game ended')
-//         }
-//     }
-
-//     // summarize results of the game
-//     if (roundsPlayed) {
-//         let summary = `User Wins: ${userWins}\nPC Wins: ${pcWins}\nTies: ${roundsPlayed - userWins - pcWins}`
-//         let status = (userWins === pcWins) ? "It's a tie!" : (userWins > pcWins) ? "You won!" : "You lost!"      
-//         alert(`${status}\n\n${summary}`)        
+//             alert(`Game over, ${(userWins > pcWins) ? 'you': 'the PC'} won after ${roundsPlayed} rounds!\n\n`)
+        
 //     }
 // }
 
 const btns = document.querySelectorAll('button')
-btns.forEach(btn => btn.addEventListener('click', playRoundWithButtons));
+btns.forEach(btn => btn.addEventListener('click', playRoundWithButtons))

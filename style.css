@@ -14,7 +14,6 @@ body {
     flex-flow: column;
     justify-content: center;
     align-items: stretch;
-    /* min-height: 100%;  */
     flex: 1;
 }
 
@@ -24,8 +23,24 @@ body > * {
 
 header {
     text-align: center;
+    font-size: 48px;
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
 }
 
+#content { 
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: stretch;
+    flex: 1;
+    
+}
+
+#content > * {
+    /* border: solid 1px red; */
+}
 footer {
     background-color: grey;
     text-align: center;
@@ -53,6 +68,8 @@ footer {
 .user-selection > button {
     padding: 3%;
     font-weight: bold;
+    /* width: 5%; */
+    /* text-align: center; */
 }
 
 .gamplay-section > * {
@@ -60,7 +77,7 @@ footer {
 } 
 
 .results-section {
-    /* border: solid 1px red; */
+    /* border: solid 1px green; */
     display: flex;
     flex-flow: row;
     justify-content: stretch;
@@ -78,37 +95,47 @@ footer {
     flex-flow: row;
     justify-content: center;
     text-align: center;
-    font-size: 36px;
     /* border: solid 1px red; */
-    margin: 2%;
-    margin-top: 0;
+    padding: 3%;
+    padding-top: 0;
 }
 
 .score-board-column {
     display: flex;
     flex-flow: column;
-    
     text-align: center;
+    font-size: 36px;
+    /* border: solid 1px green; */
 }
 
 .score-board-container > * {
-    /* border: solid 1px green; */
     flex: 1;
     
 }
 
-.score-board-column:first-child {
+.score-board-container > .score-board-column:first-child {
     border-right: solid 2px black;
+    /* border: solid 1px green; */
 }
 
-.player-name {
+.column-label {
     font-size: 36px;
     border-bottom: solid black 2px;
 }
 
-#player-score, #pc-score {
+#player-score, #pc-score, #ties-value {
     font-size: 20px;
 }
+
+.ties-container {
+    display: flex;
+    /* flex-flow: column; */
+}
+
+.ties-container > * {
+    /* border: solid 1px red; */
+}
+
 
 .link {
     text-decoration: none;
